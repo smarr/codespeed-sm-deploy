@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ block.super }}: About this site{% endblock %}
+{% block body %}
+<div id="sidebar">
+</div>
+<div id="about" class="about_content clearfix">
+<h3>About this site</h3>
+<p>The SOM VM Speed Center gives an overview of the performance of the different SOM implementations.</p>
+<p>The goal is to compare the effiency reached by different implementation techniques for programming language
+implementation. Currently, we compare classic interpreter techniques used for CSOM and SOM++ with advanced
+approaches such as metatracing used for RPySOM and self-optimizing interpreters used for TruffleSOM.</p>
+<p>This site runs on top of Django and Codespeed</p>
+<h3>About the benchmarks</h3>
+<p>The code can be found <a href="https://github.com/SOM-st/SOM/tree/master/Examples/Benchmarks">here</a>.</p>
+<h3>About SOM</h3>
+<p>SOM is a minimal Smalltalk dialect used to teach VM construction at the <a hre="http://www.hpi.uni-potsdam.de/hirschfeld/projects/som/">Hasso Plattner Institute</a>. It was originally built at the University of Århus (Denmark) where it was also used for teaching.</p>
+<p>Main website: <a href="https://github.com/SOM-st/">SOM</a></p>
+<h3>About Codespeed</h3>
+Codespeed is a web application to monitor and analyze the performance of your code.
+<p>Code: <a href="http://github.com/tobami/codespeed">github.com/tobami/codespeed</a></p>
+<p>Wiki: <a href="http://wiki.github.com/tobami/codespeed/">wiki.github.com/tobami/codespeed/</a></p>
+</div>
+{% endblock %}
