@@ -10,7 +10,7 @@ Basic Setup Instructions
 ```bash
 git clone --recurse-submodules https://github.com/smarr/codespeed-sm-deploy codespeed
 cd codespeed
-virtualenv venv
+virtualenv --python=python3 venv
 source venv/bin/activate
 cd source
 pip install -r requirements.txt
