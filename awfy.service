@@ -1,0 +1,22 @@
+[Unit]
+Description=awfy gunicorn daemon
+Requires=awfy.socket
+After=network.target
+
+[Service]
+Type=notify
+User=www-data
+Group=www-data
+# another option for an even more restricted service is
+# DynamicUser=yes
+# see http://0pointer.net/blog/dynamic-users-with-systemd.html
+RuntimeDirectory=/var/www/codespeed/awfy-speed
+WorkingDirectory=/var/www/codespeed/awfy-speed
+ExecStart=/var/www/codespeed/venv/bin/gunicorn -w 3 --bind unix:/run/awfy.sock wsgi:application --user=www-data --group=www-data --log-level=warning --log-file=/var/log/gunicorn/awfy.log
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
