@@ -1,9 +1,0 @@
-[Unit]
-Description=awfy gunicorn socket
-
-[Socket]
-ListenStream=/run/awfy.sock
-User=www-data
-
-[Install]
-WantedBy=sockets.target
