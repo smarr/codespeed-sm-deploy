@@ -8,8 +8,8 @@ instances on stefan-marr.de.
 Basic Setup Instructions
 
 ```bash
-git clone --recurse-submodules https://github.com/smarr/codespeed-sm-deploy codespeed-deploy
-cd codespeed-deploy
+git clone --recurse-submodules https://github.com/smarr/codespeed-sm-deploy codespeed
+cd codespeed
 virtualenv venv
 source venv/bin/activate
 cd source

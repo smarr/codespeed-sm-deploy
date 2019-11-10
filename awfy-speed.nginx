@@ -5,7 +5,7 @@ server {
 
 	access_log  /var/log/nginx/awfy-speed-sm-de.access.log;
 
-	root /home/www-data/awfy-speed;
+	root /var/www/codespeed/awfy-speed;
 
 	# serve directly - analogous for static/staticfiles
   location /media/ {
@@ -13,7 +13,7 @@ server {
     if ($query_string) {
 	    expires max;
   	}
-		root /home/www-data/awfy-speed/override;
+		root /var/www/codespeed/awfy-speed/override;
 	}
 	location /admin/media/ {
   	# this changes depending on your python version

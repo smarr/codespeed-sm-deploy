@@ -5,7 +5,7 @@ server {
 
 	access_log  /var/log/nginx/som-speed-sm-de.access.log;
 
-	root /home/www-data/som-speed;
+	root /var/www/codespeed/som-speed;
 
 	# serve directly - analogous for static/staticfiles
   location /media/ {
@@ -13,7 +13,7 @@ server {
     if ($query_string) {
 	    expires max;
   	}
-		root /home/www-data/som-speed/override;
+		root /var/www/codespeed/som-speed/override;
 	}
 	location /admin/media/ {
   	# this changes depending on your python version

@@ -5,7 +5,7 @@ server {
 
 	access_log  /var/log/nginx/mate-speed-sm-de.access.log;
 
-	root /home/www-data/mate-speed;
+	root /var/www/codespeed/mate-speed;
 
 	# serve directly - analogous for static/staticfiles
   location /media/ {
@@ -13,7 +13,7 @@ server {
     if ($query_string) {
 	    expires max;
   	}
-		root /home/www-data/mate-speed/override;
+		root /var/www/codespeed/mate-speed/override;
 	}
 	location /admin/media/ {
   	# this changes depending on your python version
