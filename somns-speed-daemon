@@ -1,23 +1,23 @@
 #!/bin/bash
-# /etc/init.d/awfy-speed-daemon
+# /etc/init.d/somns-speed-daemon
 
 ### BEGIN INIT INFO
-# Provides:          awfy-speed-daemon
+# Provides:          somns-speed-daemon
 # Required-Start:    $syslog $named $network $time
 # Required-Stop:     $syslog $named $network
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: awfy-speed.sm.de deamon
-# Description:       The daemon for the codespeed instance for the AWFY project
+# Short-Description: somns-speed.sm.de deamon
+# Description:       The daemon for the codespeed instance for the SOMns project
 ### END INIT INFO
 
-DAEMON_PATH="/home/www-data/awfy-speed"
+DAEMON_PATH="/home/www-data/somns-speed"
 
 DAEMON=$DAEMON_PATH/speed_unicorn.sh
 DAEMONOPTS=""
 
-NAME=awfy-speed
-DESC="The daemon for the codespeed instance for the AWFY project"
+NAME=somns-speed
+DESC="The daemon for the codespeed instance for the SOMns project"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
