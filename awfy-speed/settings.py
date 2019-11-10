@@ -60,21 +60,27 @@ MIDDLEWARE = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-if DEBUG:
-    import traceback
-    import logging
-
-    # Define a class that logs unhandled errors
-    class LogUncatchedErrors:
-        def process_exception(self, request, exception):
-            logging.error("Unhandled Exception on request for %s\n%s" %
-                                 (request.build_absolute_uri(),
-                                  traceback.format_exc()))
-    # And add it to the middleware classes
-    MIDDLEWARE += ('settings.LogUncatchedErrors',)
-
-    # set shown level of logging output to debug
-    logging.basicConfig(level=logging.DEBUG)
+# if DEBUG:
+#     import traceback
+#     import logging
+#
+#     # Define a class that logs unhandled errors
+#     class LogUncatchedErrors:
+#         def __init__(self, arg):
+#             pass
+#
+#         def __call__(self, arg):
+#             pass
+#
+#         def process_exception(self, request, exception):
+#             logging.error("Unhandled Exception on request for %s\n%s" %
+#                                  (request.build_absolute_uri(),
+#                                   traceback.format_exc()))
+#     # And add it to the middleware classes
+#     MIDDLEWARE += ('settings.LogUncatchedErrors',)
+#
+#     # set shown level of logging output to debug
+#     logging.basicConfig(level=logging.DEBUG)
 
 ROOT_URLCONF = '{0}.urls'.format(TOPDIR)
 
