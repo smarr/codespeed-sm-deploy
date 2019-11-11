@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Django settings for a speedcenter project.
+# Django settings for a Codespeed project.
 import os
 
 DEBUG = True
@@ -9,7 +9,7 @@ BASEDIR = os.path.abspath(os.path.dirname(__file__))
 TOPDIR = os.path.split(BASEDIR)[1]
 
 PARENT_DIR = os.path.split(BASEDIR)[-1]
-ALLOWED_HOSTS = [PARENT_DIR + '.stefan-marr.de' ]
+ALLOWED_HOSTS = [PARENT_DIR + '.stefan-marr.de', '127.0.0.1']
 
 #: The directory which should contain checked out source repositories:
 REPOSITORY_BASE_PATH = os.path.join(BASEDIR, "repos")
@@ -26,21 +26,12 @@ DATABASES = {
     }
 }
 
-# Local time zone for this installation. Choices can be found here:
-# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-# although not all choices may be available on all operating systems.
-# If running in a Windows environment this must be set to the same as your
-# system time zone.
 TIME_ZONE = 'Europe/Brussels'
 
-# Language code for this installation. All choices can be found here:
-# http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
 SITE_ID = 1
 
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
 USE_I18N = False
 
 # Absolute path to the directory that holds media.
@@ -61,7 +52,7 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 SECRET_KEY = 'as%n_m#)^vee2pe91^^@c))sl7^c6t-9r8n)_69%)2yt+(la2&'
 
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -69,21 +60,27 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-if DEBUG:
-    import traceback
-    import logging
-
-    # Define a class that logs unhandled errors
-    class LogUncatchedErrors:
-        def process_exception(self, request, exception):
-            logging.error("Unhandled Exception on request for %s\n%s" %
-                                 (request.build_absolute_uri(),
-                                  traceback.format_exc()))
-    # And add it to the middleware classes
-    MIDDLEWARE_CLASSES += ('settings.LogUncatchedErrors',)
-
-    # set shown level of logging output to debug
-    logging.basicConfig(level=logging.DEBUG)
+# if DEBUG:
+#     import traceback
+#     import logging
+#
+#     # Define a class that logs unhandled errors
+#     class LogUncatchedErrors:
+#         def __init__(self, arg):
+#             pass
+#
+#         def __call__(self, arg):
+#             pass
+#
+#         def process_exception(self, request, exception):
+#             logging.error("Unhandled Exception on request for %s\n%s" %
+#                                  (request.build_absolute_uri(),
+#                                   traceback.format_exc()))
+#     # And add it to the middleware classes
+#     MIDDLEWARE += ('settings.LogUncatchedErrors',)
+#
+#     # set shown level of logging output to debug
+#     logging.basicConfig(level=logging.DEBUG)
 
 ROOT_URLCONF = '{0}.urls'.format(TOPDIR)
 
@@ -123,6 +120,7 @@ STATICFILES_DIRS = (
 
 
 # Codespeed settings that can be overwritten here.
+from codespeed.settings import *
 
 ## General default options ##
 WEBSITE_NAME = "Mate Project" # This name will be used in the reports RSS feed
@@ -134,23 +132,10 @@ DEF_BASELINE = None # Which executable + revision should be default as a baselin
                     # Given as the name of the executable and commitid of the revision
                     # Example: defaultbaseline = {'executable': 'myexe', 'revision': '21'}
 
-TREND = 10 # Default value for the depth of the trend
-           # Used by reports for the latest runs and changes view
-
-# Threshold that determines when a performance change over the last result is significant
-CHANGE_THRESHOLD = 3.0
-
-# Threshold that determines when a performance change
-# over a number of revisions is significant
-TREND_THRESHOLD  = 5.0
-
 ## Changes view options ##
 DEF_EXECUTABLE = None # Executable that should be chosen as default in the changes view
                       # Given as the name of the executable.
                       # Example: defaultexecutable = "myexe"
-
-SHOW_AUTHOR_EMAIL_ADDRESS = True # Whether to show the authors email address in the
-                                 # changes log
 
 ## Timeline view options ##
 DEF_BENCHMARK = "grid" # Default selected benchmark. Possible values:
@@ -158,17 +143,11 @@ DEF_BENCHMARK = "grid" # Default selected benchmark. Possible values:
                        #   "show_none": will just show a text message
                        #   "mybench": will select benchmark "mybench"
 
-DEF_TIMELINE_LIMIT = 50  # Default number of revisions to be plotted
-                         # Possible values 10,50,200,1000
-
 TIMELINE_BRANCHES = True # NOTE: Only the default branch is currently shown
                          # Get timeline results for specific branches
                          # Set to False if you want timeline plots and results only for trunk.
 
-## Comparison view options ##
-CHART_TYPE = 'normal bars' # The options are 'normal bars', 'stacked bars' and 'relative bars'
-
-NORMALIZATION = False # True will enable normalization as the default selection
+NORMALIZATION = True # True will enable normalization as the default selection
                       # in the Comparison view. The default normalization can be
                       # chosen in the defaultbaseline setting
 
@@ -195,4 +174,3 @@ USE_MEDIAN_BANDS = True # True to enable median bands on Timeline view
 
 ALLOW_ANONYMOUS_POST = True  # Whether anonymous users can post results
 REQUIRE_SECURE_AUTH = False  # Whether auth needs to be over a secure channel
-
