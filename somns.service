@@ -1,0 +1,22 @@
+[Unit]
+Description=SOMns gunicorn daemon
+After=network.target
+
+[Service]
+Type=notify
+User=www-data
+Group=www-data
+# another option for an even more restricted service is
+# DynamicUser=yes
+# see http://0pointer.net/blog/dynamic-users-with-systemd.html
+# RuntimeDirectory=/var/www/codespeed/somns-speed
+# --user=www-data --group=www-data 
+WorkingDirectory=/var/www/codespeed/somns-speed
+ExecStart=/var/www/codespeed/venv/bin/gunicorn --workers 3 --bind unix:/var/www/codespeed/somns.sock wsgi:application --log-level=warning --log-file=/var/log/gunicorn/somns.log
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

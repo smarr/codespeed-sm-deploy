@@ -17,5 +17,10 @@ pip install -r requirements.txt
 python setup.py install
 
 pip install gunicorn
+
+systemctl link /var/www/codespeed/awfy.service
+systemctl link /var/www/codespeed/mate.service
+systemctl link /var/www/codespeed/som.service
+systemctl link /var/www/codespeed/somns.service
 ```
 
