@@ -17,7 +17,7 @@ server {
 	}
 	location /admin/media/ {
   	# this changes depending on your python version
-    root /home/www-data/speed/lib/python2.7/site-packages/django/contrib;
+    root /var/www/codespeed/venv/lib/python3.6/site-packages/django/contrib;
 	}
 	location / {
   	proxy_pass_header Server;
